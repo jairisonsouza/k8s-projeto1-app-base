@@ -4,13 +4,11 @@ header("Access-Control-Allow-Headers: *");
 
 include 'conexao.php';
 
-$id =  rand(1, 999);
+$id = rand(1, 999);
 $nome = $_POST["nome"];
-$email = $_POST["email"];
-$comentario = $_POST["comentario"];
+$mensagem = $_POST["comentario"];
 
-$query = "INSERT INTO mensagens(id, nome, email, comentario) VALUES ('$id', '$nome', '$email', '$comentario')";
-
+$query = "INSERT INTO mensagens(id, nome, mensagem) VALUES ('$id', '$nome', '$mensagem')";
 
 if ($link->query($query) === TRUE) {
   echo "New record created successfully";
