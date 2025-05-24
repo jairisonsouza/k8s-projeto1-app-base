@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
+  name: database
 spec:
   selector:
     matchLabels:
-      app: mysql
-  replicas: 5
+      app: database
+  replicas: 1
   template:
     metadata:
       labels:
-        app: mysql
+        app: database
     spec:
       containers:
       - name: mysql
-        image: mysql:5.7
+        image: database:latest
         env:
         - name: MYSQL_ROOT_PASSWORD
           value: Senha123
@@ -35,7 +35,7 @@ kind: Deployment
 metadata:
   name: backend
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: backend
@@ -51,7 +51,7 @@ spec:
         - containerPort: 80
         env:
         - name: DB_HOST
-          value: mysql
+          value: database
         - name: DB_USER
           value: root
         - name: DB_PASSWORD
